@@ -8,16 +8,27 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
+	"github.com/pbk/kit-api/models"
 )
 
 func main() {
 
-	// db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL")+" sslmode=disable dbname=kit-api")
 	db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL"))
 	defer db.Close()
 	if err != nil {
 		log.Fatalf("Error opening database: %q", err)
 	}
+	// TODO: I want InnoDB, but doesn't seem to work here.
+	// db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(
+	db.AutoMigrate(
+		&models.User{},
+		&models.SurveyItemAnswer{},
+		&models.SurveyItem{},
+		&models.Survey{},
+		&models.Location{},
+		&models.EventDetail{},
+		&models.Event{},
+	)
 
 	port := os.Getenv("PORT")
 
