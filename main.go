@@ -18,8 +18,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error opening database: %q", err)
 	}
-	// TODO: I want InnoDB, but doesn't seem to work here.
-	// db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(
 	db.AutoMigrate(
 		&models.User{},
 		&models.SurveyItemAnswer{},
