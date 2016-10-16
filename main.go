@@ -6,9 +6,18 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 func main() {
+
+	db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL"))
+	defer db.Close()
+	if err != nil {
+		log.Fatalf("Error opening database: %q", err)
+	}
+
 	port := os.Getenv("PORT")
 
 	if port == "" {
