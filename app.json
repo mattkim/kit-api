@@ -1,0 +1,12 @@
+{
+  "name": "KIT API Go",
+  "description": "Keep in Touch API",
+  "keywords": [
+    "go",
+    "kit",
+  ],
+  "image": "heroku/go:1.6",
+  "mount_dir": "src/github.com/pbk/kit-api",
+  "website": "http://github.com/pbk/kit-api",
+  "repository": "http://github.com/pbk/kit-api"
+}
