@@ -12,7 +12,8 @@ import (
 
 func main() {
 
-	db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL")+" sslmode=disable dbname=kit-api")
+	// db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL")+" sslmode=disable dbname=kit-api")
+	db, err := gorm.Open("postgres", os.Getenv("DATABASE_URL"))
 	defer db.Close()
 	if err != nil {
 		log.Fatalf("Error opening database: %q", err)
