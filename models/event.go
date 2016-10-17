@@ -16,42 +16,42 @@ type User struct {
 	Email string
 }
 
-type SurveyItemAnswer struct {
-	ModelUUID
-	SurveyItemUUID    string
-	CreatedByUser     User `gorm:"ForeignKey:CreatedByUserUUID"`
-	CreatedByUserUUID string
-	Answer            string
-}
+// type SurveyItemAnswer struct {
+// 	ModelUUID
+// 	SurveyItemUUID    string
+// 	CreatedByUser     User `gorm:"ForeignKey:CreatedByUserUUID"`
+// 	CreatedByUserUUID string
+// 	Answer            string
+// }
 
-type SurveyItem struct {
-	ModelUUID
-	SurveyUUID string
-	Question   string
-	Answers    []SurveyItemAnswer `gorm:"ForeignKey:SurveyItemUUID"`
-}
+// type SurveyItem struct {
+// 	ModelUUID
+// 	SurveyUUID string
+// 	Question   string
+// 	Answers    []SurveyItemAnswer `gorm:"ForeignKey:SurveyItemUUID"`
+// }
 
-type Survey struct {
-	ModelUUID
-	SurveyItems []SurveyItem `gorm:"ForeignKey:SurveyUUID"`
-}
+// type Survey struct {
+// 	ModelUUID
+// 	SurveyItems []SurveyItem `gorm:"ForeignKey:SurveyUUID"`
+// }
 
-type Location struct {
-	ModelUUID
-	Name             string
-	Lat              float64
-	Long             float64
-	FormattedAddress string
-}
+// type Location struct {
+// 	ModelUUID
+// 	Name             string
+// 	Lat              float64
+// 	Long             float64
+// 	FormattedAddress string
+// }
 
 type EventDetail struct {
 	ModelUUID
-	Title        string
-	Description  string
-	Location     Location `gorm:"ForeignKey:LocationUUID"`
-	LocationUUID string
-	StartTime    time.Time
-	EndTime      time.Time
+	Title       string
+	Description string
+	// Location     Location `gorm:"ForeignKey:LocationUUID"`
+	// LocationUUID string
+	StartTime time.Time
+	EndTime   time.Time
 }
 
 type Event struct {
@@ -59,8 +59,8 @@ type Event struct {
 	CreatedByUser     User `gorm:"ForeignKey:CreatedByUserUUID"`
 	CreatedByUserUUID string
 	// Invitees          []User
-	Survey          Survey `gorm:"ForeignKey:SurveyUUID"`
-	SurveyUUID      string
+	// Survey          Survey `gorm:"ForeignKey:SurveyUUID"`
+	// SurveyUUID      string
 	EventDetail     EventDetail `gorm:"ForeignKey:EventDetailUUID"`
 	EventDetailUUID string
 }

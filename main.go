@@ -20,10 +20,10 @@ func main() {
 	}
 	db.AutoMigrate(
 		&models.User{},
-		&models.SurveyItemAnswer{},
-		&models.SurveyItem{},
-		&models.Survey{},
-		&models.Location{},
+		// &models.SurveyItemAnswer{},
+		// &models.SurveyItem{},
+		// &models.Survey{},
+		// &models.Location{},
 		&models.EventDetail{},
 		&models.Event{},
 	)
