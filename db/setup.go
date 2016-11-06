@@ -16,9 +16,9 @@ func SetupDB() *gorm.DB {
 		log.Fatalf("Error opening database: %q", err)
 	}
 
-	db.DropTableIfExists(&models.User{})
-	db.DropTableIfExists(&models.Event{})
-	db.DropTableIfExists(&models.Message{})
+	// db.DropTableIfExists(&models.User{})
+	// db.DropTableIfExists(&models.Event{})
+	// db.DropTableIfExists(&models.Message{})
 	db.CreateTable(&models.User{})
 	db.CreateTable(&models.Event{})
 	db.CreateTable(&models.Message{})
