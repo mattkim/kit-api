@@ -1,0 +1,30 @@
+package libuuid
+
+import (
+	"crypto/rand"
+	"fmt"
+	"io"
+	"log"
+	"regexp"
+)
+
+// NewUUID generates a random UUID according to RFC 4122
+func NewUUID() string {
+	uuid := make([]byte, 16)
+	n, err := io.ReadFull(rand.Reader, uuid)
+	if n != len(uuid) || err != nil {
+		// return "", err
+		log.Fatal(err)
+	}
+	// variant bits; see section 4.1.1
+	uuid[8] = uuid[8]&^0xc0 | 0x80
+	// version 4 (pseudo-random); see section 4.1.3
+	uuid[6] = uuid[6]&^0xf0 | 0x40
+	return fmt.Sprintf("%x-%x-%x-%x-%x", uuid[0:4], uuid[4:6], uuid[6:8], uuid[8:10], uuid[10:])
+}
+
+// ValidateUUIDv4 validates that this string is a uuid.
+func ValidateUUIDv4(text string) bool {
+	r := regexp.MustCompile("^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[8|9|aA|bB][a-f0-9]{3}-[a-f0-9]{12}$")
+	return r.MatchString(text)
+}
