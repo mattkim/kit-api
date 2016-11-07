@@ -22,6 +22,7 @@ func NewServer(db *gorm.DB) {
 	r.HandleFunc("/message/create", handlers.CORSHandler).Methods("OPTIONS")
 	r.HandleFunc("/event/createtest", handlers.CORSHandler).Methods("OPTIONS")
 	r.HandleFunc("/event/create", handlers.CORSHandler).Methods("OPTIONS")
+	r.HandleFunc("/event/poke", handlers.CORSHandler).Methods("OPTIONS")
 	r.HandleFunc("/event", handlers.CORSHandler).Methods("OPTIONS")
 
 	h := handlers.NewEventHandler(db)
@@ -30,6 +31,7 @@ func NewServer(db *gorm.DB) {
 	r.HandleFunc("/message/create", m.CreateMessageHandler).Methods("POST")
 	r.HandleFunc("/event/createtest", h.CreateEventTestHandler).Methods("POST")
 	r.HandleFunc("/event/create", h.CreateEventHandler).Methods("POST")
+	r.HandleFunc("/event/poke", handlers.SendEmail).Methods("POST")
 	r.HandleFunc("/event", h.GetEventHandler).Methods("GET")
 
 	log.Println("Running HTTP server on " + port)
